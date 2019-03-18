@@ -1,0 +1,16 @@
+eclipse.preferences.version=1
+repositories/file\:_D\:_Note_\u601D\u7EF4\u5BFC\u56FE_configuration_org.eclipse.osgi_718_data_listener_1925729951/description=
+repositories/file\:_D\:_Note_\u601D\u7EF4\u5BFC\u56FE_configuration_org.eclipse.osgi_718_data_listener_1925729951/isSystem=true
+repositories/file\:_D\:_Note_\u601D\u7EF4\u5BFC\u56FE_configuration_org.eclipse.osgi_718_data_listener_1925729951/name=dropins
+repositories/file\:_D\:_Note_\u601D\u7EF4\u5BFC\u56FE_configuration_org.eclipse.osgi_718_data_listener_1925729951/provider=
+repositories/file\:_D\:_Note_\u601D\u7EF4\u5BFC\u56FE_configuration_org.eclipse.osgi_718_data_listener_1925729951/type=org.eclipse.equinox.internal.p2.metadata.repository.LocalMetadataRepository
+repositories/file\:_D\:_Note_\u601D\u7EF4\u5BFC\u56FE_configuration_org.eclipse.osgi_718_data_listener_1925729951/uri=file\:/D\:/Note/\u601D\u7EF4\u5BFC\u56FE/configuration/org.eclipse.osgi/718/data/listener_1925729951/
+repositories/file\:_D\:_Note_\u601D\u7EF4\u5BFC\u56FE_configuration_org.eclipse.osgi_718_data_listener_1925729951/version=1
+repositories/file\:_D\:_XMind_8_Update_4_.eclipseextension/description=
+repositories/file\:_D\:_XMind_8_Update_4_.eclipseextension/enabled=true
+repositories/file\:_D\:_XMind_8_Update_4_.eclipseextension/isSystem=true
+repositories/file\:_D\:_XMind_8_Update_4_.eclipseextension/name=D\:\\XMind_8_Update_4\\.eclipseextension
+repositories/file\:_D\:_XMind_8_Update_4_.eclipseextension/provider=
+repositories/file\:_D\:_XMind_8_Update_4_.eclipseextension/type=org.eclipse.equinox.p2.extensionlocation.metadataRepository
+repositories/file\:_D\:_XMind_8_Update_4_.eclipseextension/uri=file\:/D\:/XMind_8_Update_4/.eclipseextension
+repositories/file\:_D\:_XMind_8_Update_4_.eclipseextension/version=1
