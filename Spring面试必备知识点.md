@@ -50,7 +50,7 @@ Spring 中对应了 5 种不同类型的通知：
 
 ##### 1.1.1.6 织入（Weaving）
 
-组装方面来创建一个被通知对象。这可以在编译时完成（例如使用AspectJ编译器），也可以在运行时完成。Spring和其他纯Java AOP框架一样，在运行时完成织入。
+组装切面来创建一个被通知对象。这可以在编译时完成（例如使用AspectJ编译器），也可以在运行时完成。Spring和其他纯Java AOP框架一样，在运行时完成织入。
 
 #### 1.1.2 基于JDK动态代理的AOP实现步骤
 
@@ -1124,7 +1124,7 @@ public class OrdersService {
 
 bean就是由于IOC容器初始化、转配及管理的对象，除此之外，bean就是 与应用程序中的其他对象没有什么区别了。而bean的定义即bean相互间的依赖关系通过配置元数据描述。
 
-Spring的bean默认是**单例**的，这些单例的bean在多线程下如何保证单例？Spring单例是基于BeanFactory也就是Spring容器的，单例Bean再此容器内只有一个，**java的单例是基于jvm，每个jvm内只有一个实例。** 但是在类是易变的情况下，单例的对象会被污染，此时使用单例模式不是特别合适，此时Spring定义了各种作用域的Bean。
+Spring的bean默认是**单例**的，这些单例的bean在多线程下如何保证单例？Spring单例是基于BeanFactory也就是Spring容器的，单例Bean在此容器内只有一个，**java的单例是基于jvm，每个jvm内只有一个实例。** 但是在类是易变的情况下，单例的对象会被污染，此时使用单例模式不是特别合适，此时Spring定义了各种作用域的Bean。
 
 ## 4.1 Bean的作用域
 
@@ -1222,7 +1222,7 @@ public class GiraffeService {
 }
 ```
 
-配置文件中的配置：
+配置文件中的配置（方法可以配置为类中任意的方法）：
 
 ```xml
 <bean name="giraffeService" class="com.giraffe.spring.service.GiraffeService" init-method="initMethod" destroy-method="destroyMethod">
@@ -1388,7 +1388,7 @@ public class CustomerBeanPostProcessor implements BeanPostProcessor {
 
 **2、处理器映射器HandlerMapping(不需要工程师开发),由框架提供**
 
-作用：根据请求的url查找Handler。HandlerMapping负责根据用户请求找到Handler即处理器（Controller），SpringMVC提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。
+作用：根据请求的url查找Handler。HandlerMapping负责根据用户请求找到Handler处理器（Controller），SpringMVC提供了不同的映射器实现不同的映射方式，例如：配置文件方式，实现接口方式，注解方式等。
 
 **3、处理器适配器HandlerAdapter**
 
