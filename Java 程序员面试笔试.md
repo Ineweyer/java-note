@@ -1910,9 +1910,105 @@ Spring好处：
 4. 通过支持不同的事务处理API（例如JTA、JDBC、Hibernate）的方法对事物的管理提供一致的抽象方法
 5. Spring框架编写的大部分业务对象不依赖于Spring
 
+##### 4.1  Spring 依赖注入的四种方式
+
+```xml
+<!-- 1. 构造器注入 -->
+<bean id="CatDaoImpl" class="com.CatDaoImpl">
+	<constructor-arg value=" message "></constructor-arg>
+</bean>
+
+<!-- 2.setter 方法注入 -->
+<bean id="id" class="com.id "> 
+    <property name="id" value="123"></property> 
+</bean> 
+
+<!-- 3. 静态工厂注入 -->
+ <bean name="springAction" class=" SpringAction" >
+ 	<!--使用静态工厂的方法注入对象,对应下面的配置文件-->
+ 	<property name="staticFactoryDao" ref="staticFactoryDao"></property>
+ </bean>
+ <!--此处获取对象的方式是从工厂类中获取静态方法-->
+<bean name="staticFactoryDao" class="DaoFactory"
+	factory-method="getStaticFactoryDaoImpl">
+</bean>
+
+<!-- 4. 实例工厂注入 -->
+ <bean name="springAction" class="SpringAction">
+ 	<!--使用实例工厂的方法注入对象,对应下面的配置文件-->
+ 	<property name="factoryDao" ref="factoryDao"></property>
+ </bean>
+ <!--此处获取对象的方式是从工厂类中获取实例方法-->
+<bean name="daoFactory" class="com.DaoFactory"></bean>
+<bean name="factoryDao" factory-bean="daoFactory"
+	factory-method="getFactoryDaoImpl">
+</bean> 
+```
+
+##### 4.2  Spring装配
+
+**手动装配**：基于XML装配、构造方法、setter方法
+
+**5种不同方式的自动装配**
+
+```
+1. no：默认的方式是不进行自动装配，通过显式设置 ref 属性来进行装配。
+2. byName：通过参数名 自动装配，Spring 容器在配置文件中发现 bean 的 autowire 属性被设置成 byname，之后容器试图匹配、装配和该 bean 的属性具有相同名字的 bean。
+3. byType：通过参数类型自动装配，Spring 容器在配置文件中发现 bean 的 autowire 属性被设置成 byType，之后容器试图匹配、装配和该 bean 的属性具有相同类型的 bean。如果有多
+个 bean 符合条件，则抛出错误。
+4. constructor：这个方式类似于 byType， 但是要提供给构造器参数，如果没有确定的带参数
+的构造器参数类型，将会抛出异常。
+5. autodetect：首先尝试使用 constructor 来自动装配，如果无法工作，则使用 byType 方式。
+```
+
+##### 4.3 Spring APO原理
+
+所谓"切面"，简单说就是那些与**业务无关**，却为业务模块所**共同调用**的逻辑或责任封装起来，便于减少系统的重复代码，降低模块之间的**耦合度**，并有利于未来的**可操作性和可维护性**。
+
+主要的应用场景：
+
+````
+1. Authentication 权限
+2. Caching 缓存
+3. Context passing 内容传递
+4. Error handling 错误处理
+5. Lazy loading 懒加载
+6. Debugging 调试
+7. logging, tracing, profiling and monitoring 记录跟踪 优化 校准
+8. Performance optimization 性能优化
+9. Persistence 持久化
+10. Resource pooling 资源池
+11. Synchronization 同步
+12. Transactions 事务
+````
+
+##### 4.4 Spring MVC
+
+ ![img](https://s2.ax1x.com/2019/03/20/AlTw80.png)
+
+![img](https://s2.ax1x.com/2019/03/20/Al73J1.png)
+
+##### 4.5 Spring Boot
+
+特点：
+
+```
+1. 创建独立的 Spring 应用程序
+2. 嵌入的 Tomcat，无需部署 WAR 文件
+3. 简化 Maven 配置
+4. 自动配置 Spring
+5. 提供生产就绪型功能，如指标，健康检查和外部配置
+6. 绝对没有代码生成和对 XML 没有要求配置
+```
+
+##### 4.6 JPA 原理（java 事务）
+
+- 本地事务：紧密依赖于底层资源管理器（例如数据库连接 )，事务处理局限在当前事务资源内。此种事务处理方式不存在对应用服务器的依赖，因而部署**灵活却无法支持多数据源的分布式事务**。
+- 分布式事务：Java 事务编程接口（JTA：Java Transaction API）和 Java 事务服务 (JTS；Java TransactionService) 为 J2EE 平台提供了分布式事务服务。分布式事务（Distributed Transaction）包括事务管理器（Transaction Manager）和一个或多个支持 XA 协议的资源管理器 ( ResourceManager )。我们可以**将资源管理器看做任意类型的持久化数据存储；事务管理器承担着所有事务参与单元的协调与控制。**
+
 #### 5. Hibernate
 
-是一个开放源代码的对象关系映射（ORM）框架，不仅可以运行在J2EE容器内，还可以运行在容器外，实现了java对象和关系数据库记录的映射关系，简化了开发人员访问数据库的流程，提高开发效率，即可以用来替代JDBC。、
+是一个开放源代码的对象关系映射（ORM）框架，不仅可以运行在J2EE容器内，还可以运行在容器外，实现了java对象和关系数据库记录的映射关系，简化了开发人员访问数据库的流程，提高开发效率，即可以用来替代JDBC。
 
 五个核心接口：
 
@@ -2123,11 +2219,9 @@ drop procedure sp_name
 2. 2NF：是一范式，且数据库中每个实例或行必须可以被唯一地区分，解决非主属性对主属性的部分依赖（即要求非主属性必须要完全依赖于主属性，减少数据的冗余和插入异常）
 3. 3NF：是二范式，且每个非主属性都不传递依赖于R的候选键，则称R是第三范式。
 4. BCNF：构建在三范式之上，如果关系模式R是第一范式，且每个属性都不传递依赖于R的候选键。消除删除异常、插入异常、和更新异常。
-5. 4NF：设R是一个关系模式，D是R的多值依赖集合，如果D中存在平凡多值依赖$X \rightarrow Y$时，X必是R的超键。符合4NF必然符合3NF及其以前。
+5. 4NF：设R是一个关系模式，D是R的多值依赖集合，如果D中存在平凡多值依赖$X \rightarrow Y​$时，X必是R的超键。符合4NF必然符合3NF及其以前。
 
 ### 6.6 触发器
-
-
 
 触发器是一中特殊类型的存储过程，它由事件触发，而不是程序调用或者手工启动。
 
