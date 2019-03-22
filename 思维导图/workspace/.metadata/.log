@@ -160,3 +160,146 @@ Caused by: java.net.UnknownHostException: www.xmind.net
 	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getResponseCode(HttpsURLConnectionImpl.java:338)
 	at org.xmind.core.net.internal.XMindNetRequest.send(XMindNetRequest.java:982)
 	... 4 more
+!SESSION 2019-03-22 15:56:30.680 -----------------------------------------------
+eclipse.buildId=R3.7.4.201709040350
+java.version=1.8.0_92
+java.vendor=Oracle Corporation
+BootLoader constants: OS=win32, ARCH=x86, WS=win32, NL=zh_CN
+Framework arguments:  -eclipse.keyring @user.home/Application Data/XMind/secure_storage D:\Note\思维导图\垃圾收集器.xmind
+Command-line arguments:  -os win32 -ws win32 -arch x86 -data ./workspace -eclipse.keyring @user.home/Application Data/XMind/secure_storage D:\Note\思维导图\垃圾收集器.xmind
+
+!ENTRY org.xmind.cathy 1 0 2019-03-22 15:56:35.256
+!MESSAGE Skip unrecognized command line argument: '-eclipse.keyring'
+
+!ENTRY org.xmind.cathy 1 0 2019-03-22 15:56:35.266
+!MESSAGE Skip unrecognized command line argument: '@user.home/Application Data/XMind/secure_storage'
+
+!ENTRY org.xmind.cathy 1 0 2019-03-22 15:56:41.262
+!MESSAGE Path queued to be opened: D:\Note\思维导图\垃圾收集器.xmind
+
+!ENTRY org.xmind.cathy 1 0 2019-03-22 15:56:46.029
+!MESSAGE Ready to open files: [D:\Note\思维导图\垃圾收集器.xmind]
+
+!ENTRY org.xmind.core.command 1 0 2019-03-22 15:56:46.128
+!MESSAGE Malformed URI: D:\Note\思维导图\垃圾收集器.xmind
+
+!ENTRY org.xmind.ui.seawind 1 0 2019-03-22 15:56:48.595
+!MESSAGE WARNING: Library owner is null in info.json
+
+!ENTRY org.xmind.ui.seawind 4 0 2019-03-22 15:56:48.598
+!MESSAGE Failed to load working set object from: org.xmind.ui.internal.seawind.SeawindLibraryStorage@1e566fe/workbooks.json
+!STACK 0
+java.io.FileNotFoundException: D:\Note\思维导图\workspace\seawind\repo\workbooks.json
+	at org.xmind.core.io.DirectoryInputSource.openEntryStream(DirectoryInputSource.java:129)
+	at org.xmind.core.io.PrefixedStorage$PrefixedInputSource.openEntryStream(PrefixedStorage.java:74)
+	at org.xmind.seawind.internal.core.JSON.readObjectWithDamageCheck(JSON.java:64)
+	at org.xmind.ui.internal.seawind.SeawindLibrary.readJSONFromWithSpare(SeawindLibrary.java:221)
+	at org.xmind.ui.internal.seawind.SeawindLibrary.<init>(SeawindLibrary.java:161)
+	at org.xmind.ui.internal.seawind.SeawindUIPlugin.lazyLoadSeawindLibrary(SeawindUIPlugin.java:463)
+	at org.xmind.ui.internal.seawind.SeawindUIPlugin.getSeawindLibrary(SeawindUIPlugin.java:590)
+	at org.xmind.ui.internal.seawind.SeawindStartup.earlyStartup(SeawindStartup.java:215)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:77)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:53)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.Workbench$55.run(Workbench.java:2829)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.xmind.ui.seawind 4 0 2019-03-22 15:56:48.636
+!MESSAGE Failed to load working set object from: org.xmind.ui.internal.seawind.SeawindLibraryStorage@1e566fe/workbooks.json
+!STACK 0
+java.io.FileNotFoundException: D:\Note\思维导图\workspace\seawind\repo\workbooks.json
+	at org.xmind.core.io.DirectoryInputSource.openEntryStream(DirectoryInputSource.java:129)
+	at org.xmind.core.io.PrefixedStorage$PrefixedInputSource.openEntryStream(PrefixedStorage.java:74)
+	at org.xmind.seawind.internal.core.JSON.readObjectWithDamageCheck(JSON.java:64)
+	at org.xmind.ui.internal.seawind.SeawindLibrary.readJSONFromWithSpare(SeawindLibrary.java:221)
+	at org.xmind.ui.internal.seawind.SeawindLibrary.<init>(SeawindLibrary.java:161)
+	at org.xmind.ui.internal.seawind.SeawindUIPlugin.lazyLoadSeawindLibrary(SeawindUIPlugin.java:463)
+	at org.xmind.ui.internal.seawind.SeawindUIPlugin.getSeawindLibrary(SeawindUIPlugin.java:590)
+	at org.xmind.ui.internal.seawind.SeawindStartup.earlyStartup(SeawindStartup.java:215)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:77)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:53)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.Workbench$55.run(Workbench.java:2829)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.xmind.ui.seawind 4 0 2019-03-22 15:56:48.646
+!MESSAGE Failed to load folders object from: org.xmind.core.io.PrefixedStorage@1614b309/folders.json
+!STACK 0
+java.io.FileNotFoundException: D:\Note\思维导图\workspace\seawind\repo\folders\folders.json
+	at org.xmind.core.io.DirectoryInputSource.openEntryStream(DirectoryInputSource.java:129)
+	at org.xmind.core.io.PrefixedStorage$PrefixedInputSource.openEntryStream(PrefixedStorage.java:74)
+	at org.xmind.core.io.PrefixedStorage$PrefixedInputSource.openEntryStream(PrefixedStorage.java:74)
+	at org.xmind.seawind.internal.core.JSON.readObjectWithDamageCheck(JSON.java:64)
+	at org.xmind.ui.internal.seawind.SeawindLibrary.readJSONFromWithSpare(SeawindLibrary.java:221)
+	at org.xmind.ui.internal.seawind.SeawindLibrary.<init>(SeawindLibrary.java:190)
+	at org.xmind.ui.internal.seawind.SeawindUIPlugin.lazyLoadSeawindLibrary(SeawindUIPlugin.java:463)
+	at org.xmind.ui.internal.seawind.SeawindUIPlugin.getSeawindLibrary(SeawindUIPlugin.java:590)
+	at org.xmind.ui.internal.seawind.SeawindStartup.earlyStartup(SeawindStartup.java:215)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:77)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:53)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.Workbench$55.run(Workbench.java:2829)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY org.xmind.ui.seawind 4 0 2019-03-22 15:56:48.647
+!MESSAGE Failed to load folders object from: org.xmind.core.io.PrefixedStorage@1614b309/folders.json
+!STACK 0
+java.io.FileNotFoundException: D:\Note\思维导图\workspace\seawind\repo\folders\folders.json
+	at org.xmind.core.io.DirectoryInputSource.openEntryStream(DirectoryInputSource.java:129)
+	at org.xmind.core.io.PrefixedStorage$PrefixedInputSource.openEntryStream(PrefixedStorage.java:74)
+	at org.xmind.core.io.PrefixedStorage$PrefixedInputSource.openEntryStream(PrefixedStorage.java:74)
+	at org.xmind.seawind.internal.core.JSON.readObjectWithDamageCheck(JSON.java:64)
+	at org.xmind.ui.internal.seawind.SeawindLibrary.readJSONFromWithSpare(SeawindLibrary.java:221)
+	at org.xmind.ui.internal.seawind.SeawindLibrary.<init>(SeawindLibrary.java:190)
+	at org.xmind.ui.internal.seawind.SeawindUIPlugin.lazyLoadSeawindLibrary(SeawindUIPlugin.java:463)
+	at org.xmind.ui.internal.seawind.SeawindUIPlugin.getSeawindLibrary(SeawindUIPlugin.java:590)
+	at org.xmind.ui.internal.seawind.SeawindStartup.earlyStartup(SeawindStartup.java:215)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.runEarlyStartup(EarlyStartupRunnable.java:77)
+	at org.eclipse.ui.internal.EarlyStartupRunnable.run(EarlyStartupRunnable.java:53)
+	at org.eclipse.core.runtime.SafeRunner.run(SafeRunner.java:42)
+	at org.eclipse.ui.internal.Workbench$55.run(Workbench.java:2829)
+	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:55)
+
+!ENTRY net.xmind.workbench 4 0 2019-03-22 15:56:49.676
+!MESSAGE Failed to retrieve site events: 3
+!STACK 0
+java.net.UnknownHostException: www.xmind.net
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance0(Native Method)
+	at sun.reflect.NativeConstructorAccessorImpl.newInstance(NativeConstructorAccessorImpl.java:62)
+	at sun.reflect.DelegatingConstructorAccessorImpl.newInstance(DelegatingConstructorAccessorImpl.java:45)
+	at java.lang.reflect.Constructor.newInstance(Constructor.java:423)
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1890)
+	at sun.net.www.protocol.http.HttpURLConnection$10.run(HttpURLConnection.java:1885)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at sun.net.www.protocol.http.HttpURLConnection.getChainedException(HttpURLConnection.java:1884)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1457)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1441)
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getResponseCode(HttpsURLConnectionImpl.java:338)
+	at org.xmind.core.net.internal.XMindNetRequest.send(XMindNetRequest.java:1009)
+	at org.xmind.core.net.internal.XMindNetRequest.executeInDaemonThread(XMindNetRequest.java:896)
+	at org.xmind.core.net.internal.XMindNetRequest.access$0(XMindNetRequest.java:889)
+	at org.xmind.core.net.internal.XMindNetRequest$1.run(XMindNetRequest.java:870)
+	at java.lang.Thread.run(Thread.java:745)
+Caused by: java.net.UnknownHostException: www.xmind.net
+	at java.net.AbstractPlainSocketImpl.connect(AbstractPlainSocketImpl.java:184)
+	at java.net.PlainSocketImpl.connect(PlainSocketImpl.java:172)
+	at java.net.SocksSocketImpl.connect(SocksSocketImpl.java:392)
+	at java.net.Socket.connect(Socket.java:589)
+	at sun.security.ssl.SSLSocketImpl.connect(SSLSocketImpl.java:668)
+	at sun.security.ssl.BaseSSLSocketImpl.connect(BaseSSLSocketImpl.java:173)
+	at sun.net.NetworkClient.doConnect(NetworkClient.java:180)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:432)
+	at sun.net.www.http.HttpClient.openServer(HttpClient.java:527)
+	at sun.net.www.protocol.https.HttpsClient.<init>(HttpsClient.java:264)
+	at sun.net.www.protocol.https.HttpsClient.New(HttpsClient.java:367)
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.getNewHttpClient(AbstractDelegateHttpsURLConnection.java:191)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect0(HttpURLConnection.java:1105)
+	at sun.net.www.protocol.http.HttpURLConnection.plainConnect(HttpURLConnection.java:999)
+	at sun.net.www.protocol.https.AbstractDelegateHttpsURLConnection.connect(AbstractDelegateHttpsURLConnection.java:177)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream0(HttpURLConnection.java:1513)
+	at sun.net.www.protocol.http.HttpURLConnection.getInputStream(HttpURLConnection.java:1441)
+	at java.net.HttpURLConnection.getResponseCode(HttpURLConnection.java:480)
+	at sun.net.www.protocol.https.HttpsURLConnectionImpl.getResponseCode(HttpsURLConnectionImpl.java:338)
+	at org.xmind.core.net.internal.XMindNetRequest.send(XMindNetRequest.java:982)
+	... 4 more
