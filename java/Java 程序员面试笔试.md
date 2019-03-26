@@ -100,7 +100,7 @@ java不支持运算符重载，没有预处理器（但是import提供类似的�
 
 ```
 new
-反射机制
+反射机制(分为两种，newInstance和Constructor类的newInstance)
 clone
 反序列化
 ```
