@@ -395,7 +395,7 @@ Parrllel Scavenge收集器的老年代版本，适用于注重吞吐率和CPU资
 
 ## 6. 类加载机制
 
-**java语言中类型的加载连接以及初始化过程都是在程序运行期间完成的**，增加了加载时的性能开销，但是提高灵活性。例如可以编写面向家口的程序，等到运行时指定其具体的实现类。
+**java语言中类型的加载连接以及初始化过程都是在程序运行期间完成的**，增加了加载时的性能开销，但是提高灵活性。例如可以编写面向接口的程序，等到运行时指定其具体的实现类。
 
 ![img](https://mmbiz.qpic.cn/mmbiz_png/hvUCbRic69sAxRovHTCH3yyW1vpic22WVibSBjZicRXsFogpbuwicqugUaxFaIBQnXxwibQ0XTicKxxCVfb0L8sejJkjw/640?wx_fmt=png&tp=webp&wxfrom=5&wx_lazy=1&wx_co=1)
 

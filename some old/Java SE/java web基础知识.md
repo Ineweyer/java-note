@@ -242,7 +242,7 @@ JSP中的四种作用域包括page、request、session和application，具体来
 
 ## 实现会话跟踪的技术有哪些
 
-1. **使用Cookie**
+- **使用Cookie**
 
 向客户端发送Cookie
 
@@ -273,7 +273,7 @@ if(cookies !=null){
 
 **缺点:** 大小受到限制，用户可以禁用Cookie功能，由于保存在本地，有一定的安全风险。
 
-1. URL 重写
+- **URL 重写**
 
 在URL中添加用户会话的信息作为请求的参数，或者将唯一的会话ID添加到URL结尾以标识一个会话。
 
@@ -281,7 +281,7 @@ if(cookies !=null){
 
 **缺点：** 必须对网站的URL进行编码，所有页面必须动态生成，不能用预先记录下来的URL进行访问。
 
-3.隐藏的表单域
+- **隐藏的表单域**
 
 ```
 <input type="hidden" name ="session" value="..."/>
@@ -291,7 +291,7 @@ if(cookies !=null){
 
 **缺点：** 所有页面必须是表单提交之后的结果。
 
-1. HttpSession
+- **HttpSession**
 
 在所有会话跟踪技术中，HttpSession对象是最强大也是功能最多的。当一个用户第一次访问某个网站时会自动创建 HttpSession，每个用户可以访问他自己的HttpSession。可以通过HttpServletRequest对象的getSession方 法获得HttpSession，通过HttpSession的setAttribute方法可以将一个值放在HttpSession中，通过调用 HttpSession对象的getAttribute方法，同时传入属性名就可以获取保存在HttpSession中的对象。与上面三种方式不同的 是，HttpSession放在服务器的内存中，因此不要将过大的对象放在里面，即使目前的Servlet容器可以在内存将满时将HttpSession 中的对象移到其他存储设备中，但是这样势必影响性能。添加到HttpSession中的值可以是任意Java对象，这个对象最好实现了 Serializable接口，这样Servlet容器在必要的时候可以将其序列化到文件中，否则在序列化时就会出现异常。
 

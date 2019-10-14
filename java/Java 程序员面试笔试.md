@@ -1088,7 +1088,7 @@ WeakHashMap与HashMap相似，不同的是前者的key采用的是若弱引用�
 1. 调用key对象的hashCode方法得到hash值
 2. 调用key对象的equals方法和指向当前hash值的所有key（没有指向时为空）进行比较，如果不存在添加进去（如果已经有key指向了当前的hash值则需要使用冲突解决方法处理），如果存在则替换原来的旧值
 
-key假象问题（由于没有实现key的hashCode和equals逻辑造成）：由上面的过程可知，HashMap依赖于key类的hashCode和equals方法，即为了实现正确的性需要覆盖这两个方法。Object中的hashCode返回对象在内存中的地址，equals判断两个对象的地址是否相同，所以在不覆盖的情况下任何两个不同对象的hashCode和equals是不同的
+key假象问题（由于没有实现key的hashCode和equals逻辑造成）：由上面的过程可知，HashMap依赖于key类的hashCode和equals方法，即为了实现正确性需要覆盖重写这两个方法。Object中的hashCode返回对象在内存中的地址，equals判断两个对象的地址是否相同，所以在不覆盖的情况下任何两个不同对象的hashCode和equals是不同的
 
 自定义类作为key的注意事项：
 
@@ -1275,7 +1275,7 @@ ReentrantLock五个常用的方法（最后一个为实现线程的等待通知�
 1. lock() 以阻塞的方式获得锁，等待直到获得锁
 2. tryLock() 以非阻塞的方式获取锁，立即返回是否获得锁
 3. tryLock(long timeout, TimeUnit unit) 以非阻塞的方式获取锁，如果获取成功则返回，否则等到直到超时
-4. lockInterruptibly()，如果获得锁立即返回，否则休眠等待获得锁，与lock的不同是非阻塞（允许打断），lock方法不支持被打断。即调用lock的代码段不能捕捉其打断异常。
+4. lockInterruptibly()，如果获得锁立即返回，否则休眠等待获得锁，此外是非阻塞的（允许打断），而lock方法不支持被打断。即调用lock的代码段不能捕捉其打断异常。
 5. unlock()，Lock对象的经过加锁后一定需要执行unlock操作，手动释放锁
 
 ReentrantLock中newCondition()得到一个Condition实例，通过该对象的await()、await(long time, TimeUnit unit)、signal()、singalAll()实现等价于Object中的wait()、wait(long time)、notify()、notifyAll()方法，从而实现等待通知机制，不同于Object的wait和notify机制的时，Condition中可以有选择地进行通知（即通过创建多个不同的Condition进行实现，每个等待队列由Condition进行维护，如果需要实现顺序等待则一定需要实现环形通知）。
@@ -1345,8 +1345,8 @@ suspend() 方法：不释放锁，程序容易发生死锁（死锁是指两个�
 - 正常运行结束
 - 使用退出标志退出线程
 - Interrupt方法结束线程，
-  - 如果线程处于阻塞状态，一定要先捕捉InterruptException异常之后再通过break跳出循环
-  - 线程未处于阻塞状态，使用 isInterrupted()判断线程的中断标志来退出循环。
+  - 被动监听式：如果线程处于阻塞状态，一定要先捕捉InterruptException异常之后再通过break跳出循环（言外之意是如果在可打断的阻塞（不可打断的阻塞包括：IO操作、内置锁）中会抛出异常，通过监听这个异常知道当前的阻塞已经被打破）
+  - 主动检测式：线程未处于阻塞状态，使用 isInterrupted()判断线程的中断标志来退出循环。
 - stop 方法终止线程（线程不安全），导致该线程所持有的所有锁突然释放，造成不可控制
 
 #### 8.  synchronized 与Lock有什么异同？
@@ -1470,7 +1470,7 @@ try {
     Class.forName("com.mysql.jdbc.Driver");
     //3. 建立数据库连接
     con = DriverManager.getConnection("jdbc:mysql://localhost:3306/Test", "root", "123456");
-    //4. 建议StateMent或者是PrepareStatement对象
+    //4. 建立StateMent或者是PrepareStatement对象
     stmt = con.createStatement();
     //5. 执行SQL语句
     stmt.execute("insert into Employee values(1, 'LQ', 25)");
@@ -1516,7 +1516,7 @@ JDBC中默认设置事务是自动提交的，可以通过调用setAutoCommit(fa
 2. TRANSACTION_READ_UNCOMMITED，未提交读
 3. TRANSACTION_READ_COMMITED，已提交读
 4. TRANSACTION_REPEATABLE_READ，可重复读
-5. TRANSACTION_SERIALIZABLE，可序列化
+5. TRANSACTION_SERIALIZABLE，可序列化（串行执行）
 
 脏读：事务读取另外事务未提交的数据
 
@@ -1549,7 +1549,7 @@ PrepareStatement比Statement具有的优点：
 2. 代码的可读性和可维护性更好。
 3. 安全性更好，能够预防SQL注入攻击。
 
-CallableStatement由prepareCall方法创建，它为所有的DBMS提供一种标准形式调用存储过程的方法。继承了用于处理输入参数的方法还增加了调用数据库中存储过程和函数以及设置输出类型参数的功能。
+CallableStatement由prepareCall方法创建，它为所有的DBMS提供一种标准形式调用存储过程的方法。继承了用于处理输入参数的方法还增加了调用数据库中**存储过程和函数以及设置输出类型参数的功能**。
 
 #### 5.getString和getObject的区别
 
@@ -1647,7 +1647,7 @@ servlet和tomcat 的关系，一个是技术一个运行当前程序的容器。
 Servlet处理客户端请求的几个步骤？
 
 1. 用户通过点击一个链接向servlet发起请求，
-2. Web服务器收到请求后，会把该请求交给相应的容器来处理，当容器发现这是对Servlet发起的请求后，容器会创建两个对象，HttpServletResponseg和HTTPServletRequest。
+2. Web服务器收到请求后，会把该请求交给相应的容器来处理，当容器发现这是对Servlet发起的请求后，容器会创建两个对象，HttpServletResponse和HTTPServletRequest。
 3. 容器根据请求消息中的URL消息找到对应的Servlet，然后针对该请求创建一个单独的线程，同时把第二步创建的的两个对象以参数的形式传递到新创建的线程中。
 4. 容器调用Servlet的service方法来完成对完成用户请求的响应，service会调用doPost或doGet方法来完成具体的响应任务，同时把生成的动态页面返回给容器。
 5. 容器把响应消息组装成为HTTP格式，返回给客户端。此时，这个线程运行结束，同时删除第二步创建的两个对象
@@ -1660,7 +1660,7 @@ Servlet与CGL区别：前者使用线程实现，后者使用进程实现，前�
 
 #### 5. Servlet的生命周期
 
-Servlet生命周期只有两个状态：未创建状态和初始化状态，状态的转换通过init、service、destroy三个方法进行控制
+Servlet生命周期只有两个状态：未创建状态和初始化状态，状态的转换通过init（执行一次）、service（执行多次，每次请求一次）、destroy（执行一次）三个方法进行控制
 
 init：是servlet生命的起点，用于创建或打开与Servlet相关资源以及执行初始化工作。
 
@@ -1791,7 +1791,7 @@ jsp:plugin 用于在浏览器器中播放或者显示一个对象，例如applet
 
 作用用来引入一个另外的一个文件，指令的写法<%@ include file="test.jsp" %>
 
-区别（二（编译时和运行时）加二（共享和不共享））：
+区别（（编译时和运行时）与（共享和不共享））：
 
 1. include指令在编译时导入，适合包含静态页面的方式，include动作在运行导入，适合动态页面
 2. 使用include动作时，页面生成的变量不可以用于另一个文件（除非放置于request、response等中），使用include指令时两个页面可以共享变量。
@@ -1996,7 +1996,7 @@ REST（Representational State Transfer，表述性状态转移），通过申请
 
 #### 2. IoC
 
-控制反转（Inverse of Control, Ioc）有时也被称做依赖注入，是一种降低对象之间耦合关系的设计思想。
+**控制反转（Inverse of Control, Ioc）**有时也被称做**DI依赖注入**，是一种降低对象之间耦合关系的设计思想。
 
 在 分层体系结构中，上层调用下层接口，上层依赖于下层执行，即调用者依赖于被调用者。通过Ioc使得上层不在依赖于下层的接口，使得由调用者来决定被调用者。
 
@@ -2051,7 +2051,7 @@ Spring好处：
 </bean>
 
 <!-- 2.setter 方法注入 -->
-<bean id="id" class="com.id "> 
+<bean id="id" class="com.id.CatDaoImpl"> 
     <property name="id" value="123"></property> 
 </bean> 
 
@@ -2254,14 +2254,14 @@ saveOrUpdate方法首先检查对象状态，如果是持久态则直接返回�
 1. 如果数据不存在，load抛出异常，后者返回空
 2. get先查一级缓存再查二级最后查数据库，load先查一级缓存，如果查不到就创建代理对象，实际使用时再接着查，即实现延迟加载。
 3. get永远只返回实体类，load可以返回实体类的代理类实例
-4. get和find都是直接一路查找到底，而load先查缓存，查不到判断lazy，非lazy则也是查到底，如果是lazy则建立代理对象，initialized属性为false，target属性为null，在使用数据时查找记录，找到将initiallize修改为true值填入targe，否则抛出异常。
+4. get和find都是直接一路查找到底，而load先查缓存，查不到判断lazy，非lazy则也是查到底，如果是lazy则建立代理对象，initialized属性为false，target属性为null，在使用数据时查找记录，找到将initiallize修改为true值填入target，否则抛出异常。
 
 **Hibernate 主键生成策略**
 
 1. assigned，由外部负责，在save之前设置，缺点是，新增是需要判断是否重复，并且容易产生主键冲突。
 2. Hilo，使用高/低位算法，可以在很少的连接次数内产生多条记录，缺点是需要数据库表保存主键的生成机制，并且只能保证一个数据库主键唯一性，多个数据库不保证。
 3. SeqHilo，同样使用高低位算法，不同的是历史状态保存在Sequence中
-4. Increment（Hibernate维护），维持最大作为主键，需要数据库支持Sequence（例如Oracle），缺点是，新增时需要先查询，主键只能是int或long，会产生编发问题。
+4. Increment（Hibernate维护），维持最大作为主键，需要数据库支持Sequence（例如Oracle），缺点是，新增时需要先查询，主键只能是int或long，会产生并发问题。
 5. Identity，使用数据库的方式处理，存在移植性问题
 6. Sequence，要求数据库提供这种方式
 7.  Native，根据底层数据库自行选择Identity、Hilo。Sequence一种作为主键
@@ -2367,7 +2367,7 @@ ELK 是软件集合 Elasticsearch、Logstash、Kibana 的简称，由这三个�
 
 数据定义语句（DDL）：对数据库用户、基本表、视图、索引、进行定义与撤销
 
-数据控制语句（DCL）：对数据库进行统一的控制管理，保证数据在多用于共享的情况下能够安全
+数据控制语句（DCL）：对数据库进行统一的控制管理，保证数据共享的情况下能够安全
 
 基本sql语句的使用方式：
 
@@ -2672,7 +2672,7 @@ public class Singleton {
 
 分析：
 
-1. 稳定（排序的过程中，相等数经过排序后维持原来的顺序）的排序算法有：插入排序、冒泡排序、计数排序、桶排序、基数排序，不稳定排序算法 有：希尔、快速、简单选择（交换的过程导致）、堆排序
+1. 稳定（排序的过程中，相等数经过排序后维持原来的顺序）的排序算法有：插入排序、冒泡排序、计数排序（和具体的实现具有关系）、桶排序、基数排序，不稳定排序算法 有：希尔、快速、简单选择（交换的过程导致）、堆排序
 2. 时间复杂度为O(n2)的算法有：直接插入排序、冒泡排序、选择排序，时间复杂度为O(nlogn)的算法有：堆、快、归并
 3. 空间复杂度为O(1)的为：简单选择、直接插入、冒泡、希尔、堆。为O(logn)的为快速排序，为O(n)的为归并排序
 4. 
@@ -2686,7 +2686,7 @@ public class Singleton {
 5. 直接插入排序：默认部分有序，将当前访问的元素插入到有序数组中
 6. 希尔排序：是一种分组插入算法，开始分为d组（按到开始位置的距离分组），进行组内排序，减小d直到d=1时排序完成
 7. 归并排序：将有序的子数组进行归并（每次选出有序中的最小或最大）处理，实现时从上按下递归处理。
-8. 计数排序（位图排序）：将数转换为键存储在额外的空间中，要求输入的数据必须在确定范围的整数，四步法：找出最大最小，统计每个值出现的次数，计数累加，反向填充数组（注意是用下标填）
+8. 计数排序（位图排序）：将数转换为键存储在额外的空间中，要求输入的数据必须在确定范围的整数，四步法：找出最大最小，统计每个值出现的次数，计数累加，反向填充数组（注意是用下标填，当然也可以计算出每个值所在的位置然后将其填到对应的位置[具体见博客](https://blog.csdn.net/justin_bibo/article/details/60138444)）
 9. 桶排序：计数排序的升级版，利用了函数的映射关系。原理：假设输入的数据服从均匀分布，将数据分配到有限数量的桶里，在桶里进行排序。桶之间是具有顺序关系。
 10. 基数排序：是先按照低位排序，然后收集，接着按照高位排序，然后收集，以此类推，直到最高位。
 
@@ -2856,7 +2856,7 @@ public class Singleton {
 
     ​	2）顺序遍历法
 
-    ​	3）散列法，将一个存在Map中另外一个进行查
+    ​	3）散列法，将一个存Map中另外一个进行查
 
     b）数组不等长
 
