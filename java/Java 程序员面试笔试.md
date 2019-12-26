@@ -361,11 +361,15 @@ java语言中是在运行时开启，而c语言是在编译时开启
 
    ```java
    class Singleton{
-       private static Singleton instance = null;
+       private static volatile Singleton instance = null;
        private Singleton() {}
        public static Singleton getInstance() {
-           if(instance == null) {
-               instance = new Singleton();
+           if(instance == null) 
+               synchronized(instance) {
+               	if(instance == null) {
+               		 instance = new Singleton();
+                   }
+           	}
    		}
            return instance;
        }
